@@ -34,6 +34,7 @@ PICKS = {
 HEADING = re.compile(
     r"^(?:(?:CHAPTER|Chapter|PART|Part|BOOK|Book)\b.*"
     r"|[IVXLC]{1,7}\.?(?:\s.*)?"
+    r"|\d{1,3}\.?"
     r"|EPILOGUE|PROLOGUE|Epilogue|Prologue)$"
 )
 
@@ -54,6 +55,8 @@ def speakable_heading(h: str) -> str:
         word = (m.group(1) or "Chapter").capitalize()
         rest = m.group(3).strip(" .-—:")
         return f"{word} {roman_to_int(m.group(2).upper())}" + (f": {rest}" if rest else "")
+    if re.fullmatch(r"\d{1,3}\.?", h):
+        return f"Chapter {h.rstrip('.')}"
     return h.title() if h.isupper() else h
 
 
