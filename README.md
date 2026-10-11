@@ -7,7 +7,7 @@ Turn a PDF book into a chaptered MP3 audiobook, free and fully local.
 ## Setup (macOS)
 
 ```bash
-brew install ffmpeg espeak-ng
+brew install ffmpeg espeak-ng llama.cpp
 python3.12 -m venv venv && source venv/bin/activate   # Kokoro needs Python ≤3.12
 pip install -r requirements.txt
 ```

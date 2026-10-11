@@ -3,7 +3,7 @@
 pdf2audiobook.py — PDF -> clean chapters (Marker) -> MP3s (Kokoro TTS)
 
 Setup (macOS):
-    brew install ffmpeg espeak-ng
+    brew install ffmpeg espeak-ng llama.cpp
     python3.12 -m venv venv && source venv/bin/activate
     pip install marker-pdf kokoro soundfile numpy
 
