@@ -26,6 +26,31 @@ python pdf2audiobook.py book.pdf
 
 Output: `book_audio/01_Chapter_Name.mp3`, `02_...`, etc.
 
+## Public-domain books (Project Gutenberg)
+
+Gutenberg text is already clean, so it skips Marker entirely:
+
+```bash
+python fetch_gutenberg.py --picks          # download the curated picks to books/
+python fetch_gutenberg.py 50290            # or any Gutenberg ebook number
+python pdf2audiobook.py books/50290_Space_Station_1.md
+```
+
+### Curated picks: popular Gutenberg sci-fi with no LibriVox recording
+
+Ranked by Gutenberg downloads in its Science Fiction shelf; checked against archive.org's LibriVox collection (Oct 2026).
+
+| # | Title | Author | Length |
+|---|---|---|---|
+| 50290 | Space Station 1 | Frank Belknap Long | Novel (1957) |
+| 30434 | Occasion ... for Disaster | Randall Garrett & Laurence M. Janifer | Novel |
+| 23599 | The Big Fix | George O. Smith | Novelette |
+| 27609 | The Undersea Tube | L. Taylor Hansen | Short story |
+| 32562 | "And That's How It Was, Officer" | Ralph Sholto | Short story |
+
+Short works may still appear inside LibriVox multi-author collections.
+Gutenberg's public-domain status applies in the US; check your local law elsewhere.
+
 ## Options
 
 | Flag | Default | Notes |
