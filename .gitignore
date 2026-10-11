@@ -1,0 +1,17 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Books and generated output (keep copyrighted material out of the repo)
+*.pdf
+*.epub
+*.md
+!README.md
+*_audio/
+*.wav
+*.mp3
