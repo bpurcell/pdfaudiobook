@@ -3,7 +3,7 @@
 pdf2audiobook.py — PDF -> clean chapters (Marker) -> MP3s (Kokoro TTS)
 
 Setup (macOS):
-    brew install ffmpeg espeak-ng
+    brew install ffmpeg espeak-ng llama.cpp
     python3.12 -m venv venv && source venv/bin/activate
     pip install marker-pdf kokoro soundfile numpy
 
@@ -13,6 +13,9 @@ Usage:
 
     # 2. Narrate (reuses the cached book.md, skips chapters already done)
     python pdf2audiobook.py book.pdf
+
+    # Or narrate Markdown directly (e.g. from fetch_gutenberg.py), skipping Marker
+    python pdf2audiobook.py books/50290_Space_Station_1.md
 
 Options:
     --out DIR          output folder (default: <book>_audio)
@@ -161,7 +164,10 @@ def main():
     md_path = a.pdf.with_suffix(".md")
     out_dir = a.out or a.pdf.with_name(a.pdf.stem + "_audio")
 
-    if md_path.exists() and not a.force_extract:
+    if a.pdf.suffix.lower() == ".md":  # already-clean text (e.g. from fetch_gutenberg.py)
+        md_path = a.pdf
+        md = md_path.read_text(encoding="utf-8")
+    elif md_path.exists() and not a.force_extract:
         print(f"Using cached text: {md_path.name}")
         md = md_path.read_text(encoding="utf-8")
     else:
